@@ -1,4 +1,4 @@
-// Store our API endpoint inside url
+// Store API endpoint inside url
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
 // Perform a GET request to the query URL
@@ -51,7 +51,7 @@ function createEarthquakes(earthquakeData) {
 
   var earthquakes = L.layerGroup(earthquakeMarkers)
 
-  // Sending our earthquakes layer to the createMap function
+  // Sending earthquakes layer to the createMap function
   createMap(earthquakes);
 }
 
@@ -94,20 +94,20 @@ function createMap(earthquakes) {
     }).addTo(faultline)
   })
 
-  // Define a baseMaps object to hold our base layers
+  // Define a baseMaps object to hold the base layers
   var baseMaps = {
     "Satellite": satellite,
     "Grayscale": grayscale,
     "Outdoors" : outdoors
   };
 
-  // Create overlay object to hold our overlay layer
+  // Create overlay object to hold an overlay layer
   var overlayMaps = {
     "Tectonic Plates": faultline,
     "Earthquakes": earthquakes
   };
 
-  // Create our map, giving it the streetmap and earthquakes layers to display on load
+  // Create the map, giving it the streetmap and earthquakes layers to display on load
   var myMap = L.map("map", {
     center: [
       15.5994, -28.6731
@@ -115,10 +115,8 @@ function createMap(earthquakes) {
     zoom: 2,
     layers: [satellite, faultline, earthquakes]
   });
-
-  // Create a layer control
-  // Pass in our baseMaps and overlayMaps
-  // Add the layer control to the map
+  
+  // Pass in  baseMaps and add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
@@ -144,13 +142,13 @@ function createMap(earthquakes) {
     }
   }
   
-  // Create a legend to display information about our map
+  // Create a legend to display information about a map
   var legend = L.control({
     position: "bottomright",
     fillColor: "white"
   });
   
-  // When the layer control is added, insert a div with the class of "legend"
+  // Insert a div with the class of "legend"
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "legend");
     var depth = [9, 29, 49, 69, 89, 500];
